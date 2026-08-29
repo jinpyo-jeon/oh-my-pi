@@ -2,7 +2,7 @@ import process from "node:process";
 
 import { $env } from "@oh-my-pi/pi-utils";
 
-interface OmpCommand {
+export interface OmpCommand {
 	cmd: string;
 	args: string[];
 	shell: boolean;

@@ -5446,6 +5446,10 @@ export class InteractiveMode implements InteractiveModeContext {
 		await this.#commandController.handleForkCommand();
 	}
 
+	handleSplitCommand(): Promise<void> {
+		return this.#commandController.handleSplitCommand();
+	}
+
 	async handleMoveCommand(targetPath?: string): Promise<void> {
 		if (this.#vibeSessionTransitionBlocked()) return;
 		await this.#commandController.handleMoveCommand(targetPath);

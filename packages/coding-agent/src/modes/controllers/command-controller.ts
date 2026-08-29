@@ -58,6 +58,7 @@ import {
 import { copyToClipboard } from "../../utils/clipboard";
 import { openPath } from "../../utils/open";
 import { setSessionTerminalTitle } from "../../utils/title-generator";
+import { splitSessionIntoCmux } from "./cmux-split";
 
 function showMarkdownPanel(ctx: InteractiveModeContext, title: string, markdown: string): void {
 	const block = new TranscriptBlock();
@@ -1103,6 +1104,21 @@ export class CommandController {
 			new Spacer(1),
 			new Text(`${theme.fg("accent", `${theme.status.success} Session forked to ${shortPath}`)}`, 1, 1),
 		]);
+	}
+
+	async handleSplitCommand(): Promise<void> {
+		try {
+			const result = await splitSessionIntoCmux(this.ctx.sessionManager);
+			const sessionName = path.basename(result.forkSessionFile);
+			if (result.focused) {
+				this.ctx.showStatus(`Fork opened in cmux: ${sessionName}`);
+			} else {
+				this.ctx.showWarning(`Fork opened in cmux but could not be focused: ${sessionName}`);
+			}
+		} catch (error) {
+			const message = error instanceof Error ? error.message : String(error);
+			this.ctx.showError(`Split failed: ${sanitizeText(message)}`);
+		}
 	}
 
 	/**

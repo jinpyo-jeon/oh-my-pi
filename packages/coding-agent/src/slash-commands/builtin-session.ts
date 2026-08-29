@@ -490,6 +490,15 @@ export const BUILTIN_SESSION_SLASH_COMMANDS: ReadonlyArray<SlashCommandSpec> = [
 		},
 	},
 	{
+		name: "split",
+		icon: "branch",
+		description: "Fork this session into a cmux side pane",
+		handleTui: async (_command, runtime) => {
+			runtime.ctx.editor.setText("");
+			await runtime.ctx.handleSplitCommand();
+		},
+	},
+	{
 		name: "tree",
 		icon: "tree",
 		description: "Navigate session tree (switch branches)",

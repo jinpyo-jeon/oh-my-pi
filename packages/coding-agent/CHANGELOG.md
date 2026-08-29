@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added `/split` to fork the current persisted conversation into an independently running OMP session in a right-hand cmux pane without interrupting an active response.
+
 ## [18.0.11] - 2026-08-29
 
 ### Added
