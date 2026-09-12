@@ -42,6 +42,7 @@ cp permission-gate.ts ~/.omp/agent/extensions/
 | `qna.ts`         | Extracts questions from last response into editor via `ctx.ui.setEditorText()` |
 | `status-line.ts` | Shows turn progress in footer via `ctx.ui.setStatus()` with themed colors      |
 | `thinking-note.ts` | Adds display-only supplemental UI below assistant thinking blocks              |
+| `prompt-prefix.ts` | Prepends editable text to interactive prompts; `/prompt-prefix` edits or disables it |
 | `snake.ts`       | Snake game with custom UI, keyboard handling, and session persistence          |
 
 ### Git Integration
@@ -65,6 +66,14 @@ cp permission-gate.ts ~/.omp/agent/extensions/
 | `chalk-logger.ts` | Uses chalk from parent node_modules (demonstrates jiti module resolution) |
 | `with-deps/`      | Extension with its own package.json and dependencies                      |
 | `file-trigger.ts` | Watches a trigger file and injects contents into conversation             |
+
+## Prompt prefix
+
+Copy `prompt-prefix.ts` to `~/.omp/agent/extensions/`, then reload extensions or restart OMP.
+Run `/prompt-prefix` to edit the prefix; save empty text to disable it.
+The extension stores your text in `~/.omp/agent/prompt-prefix.txt` and reads it before
+each interactive prompt. Commands and shell/steering prefixes are left unchanged.
+Your personal prefix text is not included in this repository.
 
 ## Writing Extensions
 
